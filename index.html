@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<link rel="icon" href="favicon.svg" type="image/svg+xml">
+	<link rel="icon" href="favicon.ico" sizes="any">
+	<link rel="manifest" href="site.webmanifest">
+	<meta name="theme-color" content="#111111">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>CMSC 101 Learning Portfolio — Elmerson Cruz</title>
+	<meta name="description" content="Learning portfolio for CMSC 101 by Elmerson Cruz, BSA-1, University of the Philippines Cebu, Professor Demelo Lao.">
+	<style>
+		:root{
+			--bg:#ffffff; --fg:#111111; --muted:#666; --line:#e6e6e6; --accent:#000;
+			--code:#f6f6f6; --kbd:#f0f0f0; --ring:0 0 0 2px rgba(0,0,0,.08);
+		}
+		[data-theme="dark"]{
+			--bg:#0c0c0c; --fg:#f3f3f3; --muted:#9a9a9a; --line:#1f1f1f; --accent:#f3f3f3;
+			--code:#161616; --kbd:#1b1b1b; --ring:0 0 0 2px rgba(255,255,255,.12);
+		}
+		*{box-sizing:border-box}
+		html,body{margin:0;padding:0}
+		body{
+			font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+			background:var(--bg); color:var(--fg); line-height:1.6;
+		}
+		a{color:inherit;text-decoration:none;border-bottom:1px solid var(--line)}
+		a:hover{border-color:var(--fg)}
+		header{position:sticky;top:0;z-index:50;background:var(--bg);backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid var(--line)}
+		.container{max-width:1050px;margin:0 auto;padding:24px}
+		.brand{display:flex;align-items:center;justify-content:space-between;gap:16px}
+		.title-group{display:flex;flex-direction:column;gap:4px}
+		h1{margin:0;font-size:24px;line-height:1.2}
+		.meta{font-size:14px;color:var(--muted)}
+		.controls{display:flex;gap:12px;align-items:center}
+		.btn,button{background:transparent;border:1px solid var(--line);color:var(--fg);padding:8px 12px;border-radius:10px;cursor:pointer;font:inherit}
+		.btn:focus-visible,button:focus-visible{outline:none;box-shadow:var(--ring)}
+		.search{display:flex;align-items:center;gap:8px;border:1px solid var(--line);padding:8px 10px;border-radius:10px;min-width:260px}
+		.search input{all:unset;width:100%}
+		kbd{background:var(--kbd);padding:2px 6px;border-radius:6px;border:1px solid var(--line);font-size:12px}
+		main{padding:24px}
+		.hero{border:1px solid var(--line);border-radius:16px;padding:24px;display:grid;gap:8px}
+		.hero h2{margin:0;font-size:20px}
+		.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+		.badge{font-size:12px;border:1px solid var(--line);padding:4px 8px;border-radius:999px;color:var(--muted)}
+		.section{margin-top:24px;border-top:1px solid var(--line);padding-top:24px}
+		h3{margin:0 0 12px 0;font-size:18px}
+		.list{margin:0;padding-left:18px}
+		.list li{margin:6px 0}
+		.tabs{margin-top:24px;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+		.tablist{display:flex;overflow:auto;gap:6px;padding:6px;border-bottom:1px solid var(--line);scrollbar-width:thin}
+		.tab{padding:10px 12px;border:1px solid var(--line);border-radius:10px;white-space:nowrap;background:transparent}
+		.tab[aria-selected="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+		.panels{padding:16px}
+		.panel{display:none}
+		.panel.active{display:block}
+		details.accordion{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:12px 0}
+		details summary{cursor:pointer;font-weight:600}
+		code,pre{background:var(--code);border:1px solid var(--line)}
+		pre{padding:12px;border-radius:12px;overflow:auto}
+		footer{margin-top:40px;border-top:1px solid var(--line)}
+		.footer-grid{display:grid;gap:16px;grid-template-columns:1fr;padding:24px 0;color:var(--muted);font-size:14px}
+		.top-link{position:fixed;right:16px;bottom:16px;display:none}
+		@media(min-width:900px){.hero{grid-template-columns:1.2fr .8fr}.footer-grid{grid-template-columns:1fr 1fr}}
+		@media print{header,.controls,.tablist,.top-link,.search{display:none!important}.panel{display:block!important;break-inside:avoid}body{background:#fff;color:#000}a{border:none}}
+	</style>
+</head>
+<body>
+<header>
+	<div class="container brand" role="banner" aria-label="Site header">
+		<div class="title-group">
+			<h1>CMSC 101 Learning Portfolio</h1>
+			<div class="meta">By Elmerson Cruz • BSA‑1 • University of the Philippines Cebu • Prof. Demelo Lao</div>
+		</div>
+		<div class="controls">
+			<label class="search" aria-label="Search the portfolio">
+				<span aria-hidden="true">⌕</span>
+				<input id="q" type="search" placeholder="Search…">
+				<kbd>/</kbd>
+			</label>
+			<button id="themeBtn" class="btn" aria-pressed="false" title="Toggle theme">Light</button>
+			<button id="printBtn" class="btn" title="Print or save as PDF">Print</button>
+		</div>
+	</div>
+</header>
+
+<main class="container" id="content">
+	<section class="hero" aria-label="Executive summary">
+		<div>
+			<h2>Executive Summary</h2>
+			<p>Across the semester, my understanding of information systems evolved into a coherent view of how people, processes, data, software, and hardware interact to produce reliable decisions. Each week added a layer: systems thinking, CBIS in organizations, hardware and networking realities, software and OS concepts, spreadsheets for analysis, decision‑support with scenarios and PivotTables, and organizational choices on acquisition, licensing, and governance.</p>
+			<p>The unifying thread is fit‑for‑purpose information: aligning technical choices with human needs and outcomes to reduce uncertainty and enable ethical, scalable work.</p>
+			<div class="badges">
+				<span class="badge">Most engaging: PivotTables, Scenario Manager</span>
+				<span class="badge">Best realization: Start with user needs</span>
+				<span class="badge">Less engaging: Zoom basics, legacy hubs</span>
+			</div>
+		</div>
+		<div>
+			<details class="accordion" open>
+				<summary>Highlights</summary>
+				<ul class="list">
+					<li><strong>Most interested:</strong> - Heterogeneous and accelerated computing in the context of Moore’s Law deceleration. It reframed “performance” as an architectural and software co-design problem, not just transistor counts.
+							<br> - PivotTables and Scenario Manager. They connect accounting decisions with rapid what‑if analysis and dimensional summaries, which is directly useful for finance workflows.</li>
+					<li><strong>Most interested:</strong> - Basic Zoom logistics. Useful, but operational rather than conceptual; it offered fewer analytical takeaways.
+							<br> - Hub vs switch felt straightforward since hubs are largely obsolete, so marginal new learning was limited.</li>
+					<li><strong> Topics that bored me and suggested improvements:</strong> -Zoom basics and legacy hub concepts felt routine. Improvement: compress coverage into a concise quick-start plus a single realistic security scenario lab to apply settings, and replace hub content with a brief history note and a hands‑on switch configuration mini‑lab.</li>
+					<li><strong>Most engaging learning materials and why:</strong> 
+									<br> - Problem-driven, tool-based activities in Excel (Scenario Manager, PivotTables) and decision frameworks for system acquisition. These were engaging because they:
+								    <br> - Started with a real question, not a tool demo
+								    <br> - Provided clear success criteria
+								    <br> - Allowed rapid iteration and visible feedback on choices
+    								<br> - Translated directly to authentic accounting and operations tasks</li>
+					<li><strong>Best learning realization:</strong> “Start from user needs and business outcomes, then pick technology.” This principle appeared in hardware selection, acquisition strategies, COTS vs custom, and even spreadsheet modeling. It prevents “specs-first” mistakes and keeps analysis tied to decisions and risk.</li>
+					<li><strong>Honest-to-goodness concluding statement: </strong>CMSC 101 grounded my perspective that information systems are socio‑technical: technology matters, but value emerges only when data, process, controls, and people are aligned. I am leaving with practical tools for analysis, a sharper lens for fit and risk, and a habit of framing problems before picking solutions.</li>
+
+				</ul>
+			</details>
+			<details class="accordion">
+				<summary>Improvements suggested</summary>
+				<p>Compress Zoom basics into a quick‑start with one security lab. Replace hub deep‑dive with history plus a managed switch mini‑lab.</p>
+			</details>
+		</div>
+	</section>
+
+	<section class="section">
+		<h3>Weekly Logs</h3>
+		<div class="tabs" role="region" aria-label="Weekly tabs">
+			<div class="tablist" role="tablist" aria-label="Weeks">
+				<button class="tab" role="tab" aria-selected="true" aria-controls="w2" id="t2">Week 2</button>
+				<button class="tab" role="tab" aria-selected="false" aria-controls="w3" id="t3">Week 3</button>
+				<button class="tab" role="tab" aria-selected="false" aria-controls="w4" id="t4">Week 4</button>
+				<button class="tab" role="tab" aria-selected="false" aria-controls="w5" id="t5">Week 5</button>
+				<button class="tab" role="tab" aria-selected="false" aria-controls="w6" id="t6">Week 6</button>
+				<button class="tab" role="tab" aria-selected="false" aria-controls="w7" id="t7">Week 7</button>
+				<button class="tab" role="tab" aria-selected="false" aria-controls="w9" id="t9">Week 9</button>
+				<button class="tab" role="tab" aria-selected="false" aria-controls="w10" id="t10">Week 10</button>
+				<button class="tab" role="tab" aria-selected="false" aria-controls="w11" id="t11">Week 11</button>
+				<button class="tab" role="tab" aria-selected="false" aria-controls="w12" id="t12">Week 12</button>
+				<button class="tab" role="tab" aria-selected="false" aria-controls="w13" id="t13">Week 13</button>
+				<button class="tab" role="tab" aria-selected="false" aria-controls="w14" id="t14">Week 14</button>
+			</div>
+			<div class="panels">
+
+				<!-- Week 2 -->
+				<div class="panel active" role="tabpanel" id="w2" aria-labelledby="t2">
+					<h4>Week 2 — Systems, Information, Data, IS vs IT</h4>
+					<ul class="list">
+						<li>Systems have purpose, structure, boundaries, and feedback.</li>
+						<li>Data becomes information through context and quality; knowledge through experience.</li>
+						<li>IS vs IT: tools serve decision‑making, not the other way around.</li>
+					</ul>
+					<details class="accordion">
+						<summary>Think Questions — Full Answers</summary>
+						<ol class="list">
+							<li><strong>What makes a system a system?</strong><br>A system is a set of interrelated components that work together toward a goal by taking inputs, processing them through defined procedures, and producing outputs within a boundary and under feedback and control. It has structure, purpose, interdependence, and feedback.</li>
+							<li><strong>What are the five components of a system? Describe..</strong>
+										<br>- <strong>Input:</strong> Resources entering the system, like raw data, materials, or energy.
+										<br>- <strong>Process:</strong> Activities or logic transforming inputs into outputs.
+										<br>- <strong>Output:</strong> The product, service, or information generated.
+										<br>- <strong>Feedback:</strong> Information about performance used to adjust the system.
+										<br>- <strong>Control/Boundary:</strong> Policies, constraints, or mechanisms that keep the system aligned with objectives and define what’s inside vs outside..</li>
+							<li><strong>In what ways can we classify a system?</strong><br>- Natural vs Human-made
+										<br>- Open (interacts with environment) vs Closed (minimal interaction)
+										<br>- Physical (tangible) vs Abstract (conceptual, e.g., models)
+										<br>- Deterministic (predictable) vs Probabilistic (stochastic outcomes)
+										<br>- Static (unchanging) vs Dynamic (changes over time)
+										<br>- Simple vs Complex vs Adaptive (learns/changes structure)</li>
+							<li><strong>Information as a business resource—impact on decision-making.</strong><br>Information reduces uncertainty, reveals trends and exceptions, supports forecasting and budgeting, and enables timely, evidence-based choices. Good information improves decision quality, speeds response, aligns departments, and lowers risk and cost.</li>
+							<li><strong>Is information processed data? How does it become information and then knowledge?</strong><br>Yes. Data → information with context, accuracy, timeliness. Information → knowledge through experience and judgment.</li>
+						</ol>
+					</details>
+				</div>
+
+				<!-- Week 3 -->
+				<div class="panel" role="tabpanel" id="w3" aria-labelledby="t3">
+					<h4>Week 3 — CBIS and the Digital Revolution</h4>
+					<ul class="list">
+						<li>CBIS = people, procedures, data, software, hardware.</li>
+						<li>SAIS as TPS: reliable high‑volume routines; MIS summaries.</li>
+						<li>Internet’s role from the 3rd to 4th Industrial Revolution.</li>
+					</ul>
+					<details class="accordion">
+						<summary>Think Questions — Full Answers</summary>
+						<ol class="list">
+							<li><strong>What is a CBIS?</strong><br> A <strong>Computer-Based Information System</strong> uses IT to collect, store, process, and disseminate information for decision-making and operations. It combines people, procedures, data, software, and hardware to produce useful information.</li>
+							<li><strong>Five components of a CBIS. Describe..</strong>
+										<br> - Hardware: Physical devices like servers, PCs, mobile devices, networking gear.
+										<br> - Software: System and application programs that run tasks.
+										<br> - Data: Organized facts stored and managed for retrieval and analysis.
+										<br> - Procedures: Rules and methods for using the system.
+										<br> - People: Users and IT personnel who develop, operate, and use outputs.</li>
+							<li><strong>TPS—what does it do? Is SAIS a TPS? Why or why not?</strong><br> A Transaction Processing System records routine, day-to-day transactions reliably and quickly (enrollment, sales, payments). SAIS (e.g., UP’s student academic information system) performs high-volume, structured transactions like registration, grades, billing, and records. That’s classic TPS functionality, often integrated with MIS for summaries—so yes, SAIS is fundamentally a TPS.</li>
+							<li><strong>Internet in which Industrial Revolution period? Examples of tech in that period.</strong><br> The public Internet’s rise aligns with the Third Industrial Revolution (digital/electronics) and continues fueling the Fourth (cyber-physical/AI/IoT)
+							<br> <strong> - Hardware:</strong> Microprocessors, PCs, routers, smartphones, servers.
+							<br> <strong> - Software:</strong> TCP/IP stacks, web browsers, databases, cloud platforms, mobile OS. </li>
+							<li><strong>Digital convergence — good or bad?</strong><br> Mostly good: streamlined user experience, lower costs, interoperability, richer services (phone + camera + banking in one device). Risks: vendor lock-in, privacy/security concentration, and digital divide. Net effect is positive if governed with open standards and strong privacy.</li>
+							<li><strong>Digital economy—definition, other references, example.</strong><br> An economy primarily driven by digital technologies, data, and online platforms. Also called internet economy or data economy. Example beyond common cases: traditional wet-market logistics digitized via e-commerce and e-wallets, enabling online palengke ordering, dynamic pricing, and same-day delivery.</li>
+						</ol>
+					</details>
+				</div>
+
+				<!-- Week 4 -->
+				<div class="panel" role="tabpanel" id="w4" aria-labelledby="t4">
+					<h4>Week 4 — Hardware, Storage, and Networking</h4>
+					<ul class="list">
+						<li>Mainframes vs supercomputers: reliability throughput vs peak compute.</li>
+						<li>LAN vs WAN, wired vs wireless fit.</li>
+						<li>Switch builds LAN. Router connects networks. SAN vs NAS by performance and concurrency.</li>
+					</ul>
+					<details class="accordion">
+						<summary>Think Questions — Full Answers</summary>
+						<ol class="list">
+							<li><strong>Classification hierarchy (excluding supercomputers).</strong> 
+								<br> - <strong>Embedded devices/IoT:</strong> Tiny, task-specific controllers.
+								<br> - <strong>Mobile devices:</strong> Phones, tablets for personal, light compute.
+								<br> - <strong>Personal computers:</strong> Desktops/laptops for single users.
+								<br> - <strong>Workstations:</strong> Higher-end PCs with more CPU/GPU/RAM for engineering/graphics.
+								<br> - <strong>Servers:</strong> Multi-user, scalable CPUs and memory for services.
+								<br> - <strong>Mainframes:</strong> Very high I/O throughput and reliability for enterprise core systems.</li>
+							<li><strong>Is a supercomputer a special kind of mainframe?</strong><br> <strong>No.</strong> Mainframes optimize reliability and high-volume transaction processing. Supercomputers optimize peak computational speed for scientific simulations. Different architectures and use cases.</li>
+							<li><strong>PC workstation vs regular desktop PC.</strong><br> Workstations have ECC RAM, multi-core or workstation-grade CPUs, pro GPUs, certified drivers, and higher I/O reliability for heavy workloads. Desktops focus on general productivity at lower cost.</li>
+							<li><strong>What does “bit” stand for and represent?</strong><br> Binary digit. Smallest data unit representing 0 or 1, the foundation of digital encoding</li>
+							<li><strong>Two types of memory—characterize and compare.</strong>
+								<br> - <strong>Primary memory (RAM):</strong> Volatile, fast, used by active processes.
+								<br>- <strong>Secondary storage (SSD/HDD):</strong> Non-volatile, larger, slower, for long-term storage.</li>
+							<li><strong>Two major network types—describe.</strong> 
+								<br> - <strong>LAN:</strong><br> Local, high-speed, limited geography like a building or campus.
+								<br> - <strong>WAN:</strong><br> Wide-area connecting distant LANs over public/private links, lower latency guarantees and more routing complexity.</li>
+							<li><strong>Wired vs wireless—better option?</strong><br> Depends. Wired: more stable, faster, lower latency, more secure—best for offices, labs, servers. Wireless: mobility, easier deployment—best for classrooms and flexible spaces. For UP Cebu, mixed: wired backbone with managed Wi‑Fi for access.</li>
+							<li><strong>Hub vs switch and power use.</strong><br> A hub broadcasts to all ports. A switch forwards intelligently to destination ports via MAC learning. Switches are more efficient and typically consume slightly more power per device than very simple hubs, but overall network is more efficient and scalable with switches. Hubs are largely obsolete.</li>
+							<li><strong>Which device creates a network? Which connects networks?</strong>
+								<br> - Creates local network: Switch.
+								<br> - Connects networks: Router.</li>
+							<li><strong>Why is it called a modem? Can it connect more than one device?</strong><br> Modulator-demodulator for analog-digital signal conversion. Many ISPs provide modem-routers that can serve multiple devices via Ethernet and Wi‑Fi. A pure modem usually needs a separate router/switch to share.</li>
+							<li><strong>Can a router act as a switch?</strong><br> Yes, most home/SMB routers include built-in multi-port switches and can switch traffic within the LAN. Enterprise routers may need separate switch hardware.</li>
+							<li><strong>For UP Cebu Lahug campus: NAS or SAN?</strong><br> Campus-wide, concurrent multi-department workloads with performance and reliability needs point to SAN (block storage, high throughput, scalability). NAS is simpler and cheaper for file sharing, but for central campus storage where performance and multi-host block access matter, SAN is more appropriate.</li>
+						</ol>
+					</details>
+				</div>
+
+				<!-- Week 5 -->
+				<div class="panel" role="tabpanel" id="w5" aria-labelledby="t5">
+					<h4>Week 5 — Moore’s Law and Hardware Decisions</h4>
+					<ul class="list">
+						<li>Density scaling slows; gains via architecture, accelerators, and software.</li>
+						<li>Select hardware by workload, TCO, manageability.</li>
+					</ul>
+					<details class="accordion">
+						<summary>Think Questions — Full Answers</summary>
+						<ol class="list">
+							<li><strong>Is Moore’s Law still accurate?</strong><br> As a strict “transistor density doubles every ~2 years,” it’s slowing due to physical limits. However, effective performance gains continue via advanced packaging, heterogenous compute, specialized accelerators, and software optimization. So, it’s evolving rather than strictly holding.</li>
+							<li><strong>Decision factors when acquiring business hardware.</strong>
+									<br> - Workload requirements and performance targets
+									<br> - Total cost of ownership: purchase, maintenance, energy
+									<br> - Reliability and warranty/support
+									<br> - Compatibility with existing systems and software
+									<br> - Security and manageability
+									<br> - Scalability and upgrade paths
+									<br> - Availability and lead times
+									<br> - Environmental and physical constraints.</li>
+							<li><strong>Major driver not highlighted as a heading.</strong><br> User needs and business outcomes. Start with processes and pain points, then define specs. Misfit hardware is costly even if specs look impressive.</li>
+							<li><strong>Most amazing current trend and why.</strong><br> Heterogeneous and accelerated computing (GPUs/NPUs/TPUs). It unlocks AI, simulation, and analytics at scales impossible on CPUs alone, reshaping finance, healthcare, and logistics—even enabling near real-time risk and forecasting for accounting analytics.</li>
+							<li><strong>Consumerization of IT—good or bad?</strong><br> Net positive: better UX, faster adoption, cost pressure on vendors. Risks include shadow IT, security, and data sprawl. With governance and MDM, benefits outweigh downsides.</li>
+						</ol>
+					</details>
+				</div>
+
+				<!-- Week 6 -->
+				<div class="panel" role="tabpanel" id="w6" aria-labelledby="t6">
+					<h4>Week 6 — Software, OS, and Utilities</h4>
+					<ul class="list">
+						<li>System vs application software.</li>
+						<li>OS as operations chief.</li>
+						<li>Install OS before apps.</li>
+					</ul>
+					<details class="accordion">
+						<summary>Think Questions — Full Answers</summary>
+						<ol class="list">
+							<li><strong>Two major software types—describe.</strong>
+								<br> - System software: OS, drivers, utilities—manages hardware and provides platform.
+								<br> - Application software: End-user tasks—spreadsheets, ERP, browsers, accounting systems.</li>
+							<li><strong>Why was the OS created?</strong><br> To manage hardware complexity, allocate resources, provide a consistent interface, and allow multiple programs and users to run safely and efficiently.</li>
+							<li><strong>System vs application software intended use.</strong><br> System software serves the computer and other software. Application software serves the user’s tasks and domain problems.</li>
+							<li><strong>Why install an OS before apps?</strong><br> Apps depend on OS services—file systems, memory, process scheduling, device drivers, security. Without an OS, apps have no standardized environment.</li>
+							<li><strong>Best analogy of an OS to a human.</strong><br> A chief of operations or the brain’s executive function: prioritizes tasks, allocates resources, handles I/O “senses,” and enforces rules so everything works smoothly.</li>
+						</ol>
+					</details>
+				</div>
+
+				<!-- Week 7 -->
+				<div class="panel" role="tabpanel" id="w7" aria-labelledby="t7">
+					<h4>Week 7 — Excel Basics</h4>
+					<ul class="list">
+						<li>Grid thinking and reference models.</li>
+						<li>Absolute references, F4 toggle, financial formats.</li>
+						<li>Navigation: Go To and Ctrl+Arrows.</li>
+					</ul>
+					<details class="accordion">
+						<summary>Think Questions — Full Answers</summary>
+						<ol class="list">
+							<li><strong>Spreadsheet vs word processor workspace.</strong><br> Spreadsheets use a grid of cells (rows and columns) where each cell can hold values, labels, or formulas with recalculation. Word processors focus on flowing text with formatting.</li>
+							<li><strong>Tab, Ribbon, Group in Excel.</strong>
+								<br> - Tab: Top-level category like Home, Insert, Formulas.
+								<br> - Ribbon: The horizontal command area under tabs.
+								<br> - Group: Logical clusters within a tab, e.g., Font, Alignment. This organization speeds discoverability and task flow.</li>
+							<li><strong>Most useful navigation tip.</strong><br> Go To (Ctrl+G) and Ctrl+Arrow keys to jump across data regions quickly. It’s a huge productivity boost for large financial sheets.</li>
+							<li><strong>Character key before a function or formula.</strong><br> Equals sign (=) </li>
+							<li><strong>What must a user specify for a function/formula to work?</strong><br> Correct syntax, required arguments with proper types and ranges, correct cell references, and appropriate use of parentheses and separators based on locale.</li>
+							<li><strong>Absolute referencing—meaning.</strong><br> Locking a row, column, or both so references don’t shift when copied. Useful for fixed parameters like tax rates or exchange rates.</li>
+							<li><strong>How to make absolute references and the toggle key.</strong><br> Use $ before column and/or row, e.g., $A$1, A$1, $A1. Toggle with F4.</li>
+							<li><strong>Most useful number format for financial documents.</strong><br> Accounting or Currency with consistent decimal places and thousands separators. Also Date formats for schedules and Percentage for ratios. Accounting format aligns symbols and improves readability.</li>
+						</ol>
+					</details>
+				</div>
+
+				<!-- Week 9 -->
+				<div class="panel" role="tabpanel" id="w9" aria-labelledby="t9">
+					<h4>Week 9 — Scenario Manager and Importing Data</h4>
+					<ul class="list">
+						<li>Changing vs result cells sharpen model design.</li>
+						<li>Fixed‑width vs delimited. Text‑to‑Columns for in‑sheet restructuring.</li>
+					</ul>
+					<details class="accordion">
+						<summary>Think Questions — Full Answers</summary>
+						<ol class="list">
+							<li><strong>Activating Data Analysis ToolPak.</strong><br> Go to the File tab. Open Options. Choose Add-ins. At the bottom, set Manage to Excel Add-ins, click Go. Check Analysis ToolPak and press OK. After activation, the Data tab will show a Data Analysis button.</li>
+							<li><strong>Scenario Manager ranges.</strong>
+									<br>- Changing cells: The input cells you vary across scenarios, such as interest rate, growth rate, or cost assumptions.
+									<br> - Result cell: A single output cell that computes the outcome (e.g., net income, NPV) based on the changing inputs.</li>
+							<li><strong>Displaying a specific scenario.</strong><br> Data tab → What‑If Analysis → Scenario Manager → select the scenario → Show. To generate a report: Summary → choose Result cell → Excel creates a Scenario Summary sheet.</li>
+							<li><strong>Fixed-width vs delimited text structures.</strong>
+									<br> - Fixed-width: Columns have preset character widths. Fields align in neat vertical columns regardless of content.
+									<br> - **Delimited**: Fields are separated by a specific character such as comma, tab, or semicolon. Column boundaries depend on the delimiter, not position.</li>
+							<li><strong>When to use Text-to-Columns.</strong><br> Use it when data already inside Excel needs splitting into multiple columns, typically when a single column contains delimited values or fixed positions. The data is usually already in the worksheet, not being imported via the wizard.</li>
+						</ol>
+					</details>
+				</div>
+
+				<!-- Week 10 -->
+				<div class="panel" role="tabpanel" id="w10" aria-labelledby="t10">
+					<h4>Week 10 — PivotTables</h4>
+					<ul class="list">
+						<li>Field roles map to business questions.</li>
+						<li>Recommended layouts accelerate exploration.</li>
+						<li>Great for summarization, slicing, drilldown.</li>
+					</ul>
+					<details class="accordion">
+						<summary>Think Questions — Full Answers</summary>
+						<ol class="list">
+							<li><strong>What is a Pivot Table??</strong><br> A PivotTable is a dynamic summarization tool that aggregates and rearranges data by dragging fields into Rows, Columns, Values, and Filters to analyze trends and relationships quickly.</li>
+							<li><strong>Preparing data for PivotTables.</strong><br> Use a clean tabular range with headers, no blank header names, consistent data types per column, no completely blank rows or columns, and convert to an Excel Table if possible for auto-expanding ranges.</li>
+							<li><strong>Why it’s called “Pivot”.</strong><br> Because you can pivot, or rotate, the orientation of fields between Rows and Columns to view the same dataset from different perspectives instantly</li>
+							<li><strong>Creating a PivotTable.</strong><br> Select any cell in your dataset → Insert tab → PivotTable → choose table/range and destination → drag fields into Rows, Columns, Values, and Filters in the PivotTable Fields pane.</li>
+							<li><strong>Easiest way to create one.</strong><br> Use Insert → Recommended PivotTables to let Excel suggest common layouts, then tweak as needed.</li>
+							<li><strong>When to use “Recommended Pivot Tables”.</strong><br> When exploring a new dataset, you want fast, sensible summaries without manually designing a layout, or when you’re unsure which aggregation makes sense.</li>
+							<li><strong>Best times to use PivotTables.</strong>
+								<br> - Summarizing large transactional data
+								<br> - Producing quick cross‑tabs and drilldowns
+								<br> - Building ad hoc financial summaries, aging analysis, or sales by segment
+								<br> - When slicing by multiple dimensions is needed without writing formulas</li>
+						</ol>
+					</details>
+				</div>
+
+				<!-- Week 11 -->
+				<div class="panel" role="tabpanel" id="w11" aria-labelledby="t11">
+					<h4>Week 11 — System Acquisition Strategies and SDLC</h4>
+					<ul class="list">
+						<li>Never skip needs analysis.</li>
+						<li>Custom vs COTS vs outsourcing tradeoffs.</li>
+						<li>Requirements analysis is the leverage point.</li>
+					</ul>
+					<details class="accordion">
+						<summary>Think Questions — Full Answers</summary>
+						<ol class="list">
+							<li><strong>Proceed without needs analysis?</strong><br>No. Skipping needs analysis risks misfit features, wasted budget, scope creep, and low adoption. A basic business requirements analysis aligns the solution with objectives.</li>
+							<li><strong>Three ways to acquire a system.</strong>
+								<br> - Custom/in‑house development: Maximum fit and differentiation, longer time and higher risk.
+								<br> - Packaged (COTS)**: Faster deployment, lower upfront cost, but possible gaps and vendor lock‑in.
+								<br> - Outsourced: Expertise and scalability from third parties, but dependency and contract governance needs..</li>
+							<li><strong>Which is likeliest to create competitive advantage?</strong><br> Custom/in‑house development, because it encodes unique processes and analytics competitors can’t buy off the shelf—assuming execution capability and proper governance.</li>
+							<li><strong>Most critical SDLC step.</strong><br> Requirements analysis. It defines scope, quality targets, constraints, and success metrics; errors here propagate and become costlier later.</li>
+							<li><strong>Where a business professional participates heavily.</strong>
+								<br> - Requirements gathering and validation
+								<br> - Process modeling and control design
+								<br> - User acceptance testing and training plans
+								<br> - Change management and rollout readiness</li>
+							<li><strong>COTS Lifecycle phases similar to SDLC.</strong><br>Selection, procurement, configuration/customization, testing, deployment, and maintenance parallel SDLC’s analysis, design/config, testing, implementation, and support.</li>
+							<li><strong>Common COTS misconceptions.</strong>
+								<br> - “COTS fits 100% out of the box.”
+								<br> - “Customization is always easy.”
+								<br> - “Total cost is just licenses.”
+								<br> - “Upgrades won’t break our configs.”
+								<br> - “Vendor SLAs remove our governance burden.”</li>
+						</ol>
+					</details>
+				</div>
+
+				<!-- Week 12 -->
+				<div class="panel" role="tabpanel" id="w12" aria-labelledby="t12">
+					<h4>Week 12 — Free and Open Source, Licensing, Strategy</h4>
+					<ul class="list">
+						<li>Free software emphasizes freedoms; open source emphasizes development model.</li>
+						<li>Licenses grant rights, not ownership.</li>
+						<li>Strategy weighs TCO, integration, vendor viability, skills.</li>
+					</ul>
+					<details class="accordion">
+						<summary>Think Questions — Full Answers</summary>
+						<ol class="list">
+							<li><strong>Philosophy of free software.</strong><br>Emphasizes user freedoms: to run, study, modify, and share software. “Free” primarily refers to liberty, not price.</li>
+							<li><strong>Open source vs closed source</strong>
+								<br> - Open source: Source code available for review/modification, collaborative development, varied licenses.
+								<br> - Closed source: Proprietary code, controlled distribution, licensing restricts modification and redistribution.</li>
+							<li><strong>Is open source synonymous with free software?</strong><br> OverlapNot exactly. There’s overlap, but “free software” is framed around user freedoms, while “open source” emphasizes development model and practical benefits. Some open source isn’t free in the FSF sense, and vice versa.</li>
+							<li><strong>Pros and cons of open source.</strong>
+								<br> - Pros: Lower licensing costs, transparency, flexibility, community support, reduced vendor lock‑in.
+								<br> - Cons: Variable support quality, integration burden, compliance with licenses, potential skill gaps internally.</li>
+							<li><strong>What you pay for in licenses and ownership.</strong><br> You pay for usage rights under specific terms, updates, and support—not ownership of the code. Ownership remains with the vendor or rights holder.</li>
+							<li><strong>Key factors in choosing an acquisition strategy.</strong><br> Business requirements fit, TCO, time‑to‑value, risk and compliance, vendor viability, integration complexity, scalability, and internal capabilities.</li>
+							<li><strong>Evaluating COTS vendors and documents to send.</strong><br> Gather product fit, roadmap, integration options, security posture, implementation effort, references, and pricing. Issue an RFI or RFP describing requirements and evaluation criteria to solicit comparable proposals.</li>
+						</ol>
+					</details>
+				</div>
+
+				<!-- Week 13 -->
+				<div class="panel" role="tabpanel" id="w13" aria-labelledby="t13">
+					<h4>Week 13 — Software Selection and IT Ethics</h4>
+					<ul class="list">
+						<li>Selection: functionality, usability, ROI, integration, vendor reliability.</li>
+						<li>Ethics: privacy, accuracy, property, accessibility.</li>
+						<li>Usability drives adoption and realized value.</li>
+					</ul>
+					<details class="accordion">
+						<summary>Think Questions — Full Answers</summary>
+						<ol class="list">
+							<li><strong>Five factors when choosing business software.</strong><br> Functionality fit, usability and adoption, cost and ROI, integration and scalability, vendor support and reliability.</li>
+							<li><strong>Overlap with acquisition‑strategy factors.</strong><br>Fit, TCO, integration, scalability, and vendor viability are shared concerns across both selection and acquisition decisions.</li>
+							<li><strong>Factor not obviously in acquisition‑strategy keys.</strong><br> End‑user usability and adoption. Strategy discussions often underweight UX, yet adoption determines realized value.</li>
+							<li><strong>What constitutes cybersquatting.</strong><br> Registering, trafficking in, or using a domain name in bad faith to profit from someone else’s trademark or brand recognition..</li>
+							<li><strong>Ethical behavior using CBIS.</strong><br> Follow principles like privacy protection, accuracy, property rights, and accessibility. The “Ten Commandments of Computer Ethics” provide practical guardrails for responsible, professional use.</li>
+						</ol>
+					</details>
+				</div>
+
+				<!-- Week 14 -->
+				<div class="panel" role="tabpanel" id="w14" aria-labelledby="t14">
+					<h4>Week 14 — Zoom Basics</h4>
+					<ul class="list">
+						<li>Post‑schedule configuration: security, roles, permissions.</li>
+						<li>Waiting Room prevents unwanted entry.</li>
+						<li>Operational preparation ensures smoother sessions.</li>
+					</ul>
+					<details class="accordion">
+						<summary>Think Questions — Full Answers</summary>
+						<ol class="list">
+							<li><strong>Next step after scheduling a meeting.</strong><br> Configure meeting options: waiting room, passcode, host/alt hosts, recording, participant permissions, and send invites with date, time, and link. Add to calendar to lock logistics.</li>
+							<li><strong>Participant prep to join.</strong><br> Install or update Zoom client, test audio/video, ensure stable internet, verify mic/camera permissions, sign in if required, and have the meeting link, ID, and passcode ready.</li>
+							<li><strong>Waiting Room purpose and when to use</strong><br> A lobby that lets the host admit participants intentionally, preventing Zoombombing and ensuring only approved attendees enter. Use it for classes, corporate meetings, or any session needing controlled entry.</li>
+						</ol>
+					</details>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<section class="section">
+		<h3>Utilities</h3>
+		<ul class="list">
+			<li>Press “/” to focus search. Use ← → to switch tabs. Press “t” to toggle theme.</li>
+			<li>Click “Print” to save a clean PDF. Tabs render as a continuous document in print.</li>
+		</ul>
+	</section>
+
+	<footer class="section">
+		<div class="footer-grid">
+			<div>
+				<strong>Author</strong><br>
+				Elmerson Cruz • BSA‑1 • University of the Philippines Cebu<br>
+				Professor Demelo Lao
+			</div>
+			<div>
+				<strong>Note</strong><br>
+				This was created as a requirement for the course CMSC 101: Introduction to Information Systems
+			</div>
+		</div>
+	</footer>
+</main>
+
+<a href="#top" class="btn top-link" id="topBtn" title="Back to top">↑</a>
+
+<script>
+(function(){
+	const themeBtn = document.getElementById('themeBtn');
+	const printBtn = document.getElementById('printBtn');
+	const q = document.getElementById('q');
+	const tabs = Array.from(document.querySelectorAll('.tab'));
+	const panels = Array.from(document.querySelectorAll('.panel'));
+	const topBtn = document.getElementById('topBtn');
+
+	// Theme with persistence
+	const saved = localStorage.getItem('theme');
+	if(saved) document.body.setAttribute('data-theme', saved);
+	themeBtn.textContent = (document.body.getAttribute('data-theme')==='dark') ? 'Dark' : 'Light';
+	function toggleTheme(){
+		const cur = document.body.getAttribute('data-theme')==='dark' ? 'dark' : 'light';
+		const next = cur==='dark' ? 'light' : 'dark';
+		document.body.setAttribute('data-theme', next);
+		localStorage.setItem('theme', next);
+		themeBtn.textContent = next==='dark' ? 'Dark' : 'Light';
+		themeBtn.setAttribute('aria-pressed', next==='dark');
+	}
+	themeBtn.addEventListener('click', toggleTheme);
+
+	// Print
+	printBtn.addEventListener('click', ()=> window.print());
+
+	// Tabs
+	function activate(id){
+		tabs.forEach(b => b.setAttribute('aria-selected', b.getAttribute('aria-controls')===id));
+		panels.forEach(p => p.classList.toggle('active', p.id===id));
+	}
+	tabs.forEach(btn => btn.addEventListener('click', ()=> activate(btn.getAttribute('aria-controls'))));
+
+	// Keyboard: arrows, /, t
+	window.addEventListener('keydown', (e)=>{
+		if(e.key==='/'){ e.preventDefault(); q.focus(); return; }
+		if(e.key.toLowerCase()==='t'){ toggleTheme(); return; }
+		if(e.key==='ArrowLeft' || e.key==='ArrowRight'){
+			e.preventDefault();
+			const i = tabs.findIndex(b => b.getAttribute('aria-selected')==='true');
+			if(i<0) return;
+			const n = e.key==='ArrowRight' ? (i+1)%tabs.length : (i-1+tabs.length)%tabs.length;
+			activate(tabs[n].getAttribute('aria-controls'));
+			tabs[n].focus();
+		}
+	});
+
+	// Search: show matching panels while typing
+	q.addEventListener('input', ()=>{
+		const term = q.value.trim().toLowerCase();
+		if(!term){
+			const current = document.querySelector('.tab[aria-selected="true"]')?.getAttribute('aria-controls') || 'w2';
+			activate(current);
+			return;
+		}
+		let first = null;
+		panels.forEach(p=>{
+			const ok = p.textContent.toLowerCase().includes(term);
+			p.classList.toggle('active', ok);
+			if(ok && !first) first = p.id;
+		});
+		if(first) tabs.forEach(b => b.setAttribute('aria-selected', b.getAttribute('aria-controls')===first));
+	});
+
+	// Back to top
+	function onScroll(){ topBtn.style.display = window.scrollY > 400 ? 'inline-block' : 'none'; }
+	window.addEventListener('scroll', onScroll); onScroll();
+})();
+</script>
+</body>
+</html>
